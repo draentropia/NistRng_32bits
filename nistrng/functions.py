@@ -160,19 +160,19 @@ def check_eligibility_by_name_battery(test_name: str,
 
 def pack_sequence(sequence: numpy.ndarray) -> numpy.ndarray:
     """
-    Pack a sequence of signed integers to its binary 8-bit representation using numpy.
+    Pack a sequence of signed integers to its binary 32-bit representation using numpy.
 
     :param sequence: the integer sequence to pack (in the form of a numpy array, ndarray)
-    :return: the sequence packed in 8-bit integer in the form of a numpy array (ndarray)
+    :return: the sequence packed in 32-bit integer in the form of a numpy array (ndarray)
     """
-    return numpy.unpackbits(numpy.array(sequence, dtype=numpy.uint8)).astype(numpy.int8)
+    return numpy.unpackbits(numpy.array(sequence, dtype=numpy.uint32)).astype(numpy.int32)
 
 
 def unpack_sequence(sequence_binary_encoded: numpy.ndarray) -> numpy.ndarray:
     """
-    Unpack a sequence of numbers represented with 8-bits to its signed integer representation using numpy.
+    Unpack a sequence of numbers represented with 32-bits to its signed integer representation using numpy.
 
-    :param sequence_binary_encoded: the 8-bit numbers sequence to unpack (in the form of a numpy array, ndarray)
+    :param sequence_binary_encoded: the 32-bit numbers sequence to unpack (in the form of a numpy array, ndarray)
     :return: the sequence unpacked in signed integer in the form of a numpy array (ndarray)
     """
-    return numpy.packbits(numpy.array(sequence_binary_encoded)).astype(numpy.int8)
+    return numpy.packbits(numpy.array(sequence_binary_encoded)).astype(numpy.int32)
