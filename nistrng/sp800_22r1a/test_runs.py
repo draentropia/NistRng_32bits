@@ -61,5 +61,6 @@ class RunsTest(Test):
         proportion: float = numpy.count_nonzero(bits) / bits.size
         tau: float = 2.0 / math.sqrt(bits.size)
         if abs(proportion - 0.5) > tau:
+            print("NOT ELIGIBLE by proportion higher than tau- "+self.name+"("+str(abs(proportion - 0.5))+" vs "+str(tau)+")")
             return False
         return True

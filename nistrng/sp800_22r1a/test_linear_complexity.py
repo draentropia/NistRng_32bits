@@ -84,6 +84,7 @@ class LinearComplexityTest(Test):
         """
         # Check for eligibility
         if bits.size < self._sequence_size_min:
+            print("NOT ELIGIBLE by bit size- "+self.name+"("+str(bits.size)+" vs "+str(self._sequence_size_min)+")")
             return False
         return True
 

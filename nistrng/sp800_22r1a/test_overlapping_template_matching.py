@@ -84,6 +84,7 @@ class OverlappingTemplateMatchingTest(Test):
         # Check for eligibility
         # Note: at least 1,028,016 bits are required
         if bits.size < (self._substring_bits_length * self._blocks_number):
+            print("NOT ELIGIBLE by bit size- "+self.name+"("+str(bits.size)+" vs 1,028,016)")
             return False
         return True
 

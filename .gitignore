@@ -1,0 +1,5 @@
+build/*
+dist/*
+nistrng.egg-info/*
+nistrng/__pycache__/*
+nistrng/sp800_22r1a/__pycache__/*

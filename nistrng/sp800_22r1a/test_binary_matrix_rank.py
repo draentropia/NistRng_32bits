@@ -215,6 +215,7 @@ class BinaryMatrixRankTest(Test):
         # Check for eligibility
         blocks_number: int = int(math.floor(bits.size / (self._rows_number * self._cols_number)))
         if blocks_number < self._block_size_min:
+            print("NOT ELIGIBLE by block size- "+self.name+"("+str(blocks_number)+" vs "+str(self._block_size_min)+")")
             return False
         return True
 

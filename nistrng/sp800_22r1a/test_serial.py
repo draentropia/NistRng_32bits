@@ -67,6 +67,7 @@ class SerialTest(Test):
         """
         # Check for eligibility
         if int(math.floor(math.log(bits.size, 2))) - 2 < self._blocks_length_min:
+            print("NOT ELIGIBLE by block size- "+self.name+"("+str(int(math.floor(math.log(bits.size, 2))) - 2)+" vs "+str(self._blocks_size_min)+")")
             return False
         return True
 
