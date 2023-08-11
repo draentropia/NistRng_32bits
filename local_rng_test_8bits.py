@@ -28,7 +28,7 @@ if __name__ == "__main__":
     print("test ",  int((2**32-1)*factor))
     print("test ", int(1*factor))
     print("test ", int((2**32-1)/2*factor))
-    with open('/home/eortega/coding/cesga-qrng/output.txt', 'r') as file:
+    with open('cesga-qrng/output.txt', 'r') as file:
       for line in file.readlines():
           val = int(int(line.split("\n")[0]) * factor)
           print("debug", val, int(line.split("\n")[0]))
