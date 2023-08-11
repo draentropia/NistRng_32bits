@@ -23,12 +23,12 @@ if __name__ == "__main__":
     #sequence: numpy.ndarray = numpy.random.randint(-128, 128, 1000, dtype=int)
     array = []
     top_limit = 2**32-1
-    factor = 255/top_limit
+    factor = (2**8-1)/top_limit
     print(factor)
     print("test ",  int((2**32-1)*factor))
     print("test ", int(1*factor))
     print("test ", int((2**32-1)/2*factor))
-    with open('/home/eortega/coding/cesga-qrng/small_output.txt', 'r') as file:
+    with open('/home/eortega/coding/cesga-qrng/output.txt', 'r') as file:
       for line in file.readlines():
           val = int(int(line.split("\n")[0]) * factor)
           print("debug", val, int(line.split("\n")[0]))
