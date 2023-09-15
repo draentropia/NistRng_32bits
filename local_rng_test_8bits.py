@@ -25,27 +25,27 @@ if __name__ == "__main__":
     top_limit = 2**32-1
     factor = (2**8-1)/top_limit
     print(factor)
-    print("test ",  int((2**32-1)*factor))
-    print("test ", int(1*factor))
-    print("test ", int((2**32-1)/2*factor))
+    print("test ",  int((2**32-1)*factor-128))
+    print("test ", int(1*factor-128))
+    print("test ", int((2** 32-1)/2*factor-128))
     with open('cesga-qrng/output.txt', 'r') as file:
       for line in file.readlines():
-          val = int(int(line.split("\n")[0]) * factor)
+          val = int(int(line.split("\n")[0]) * factor -127)
           print("debug", val, int(line.split("\n")[0]))
           array.append(val)
     #sequence: numpy.ndarray = numpy.array(array, dtype=numpy.uint8)
-    sequence: numpy.ndarray = numpy.array(array, dtype=numpy.uint8)
+    sequence: numpy.ndarray = numpy.array(array, dtype=numpy.int8)
     
     binary_sequence: numpy.ndarray = pack_sequence(sequence)
-    
+    #test_array = [1,1,0,0,1,0,0,1,0,0,0,0,1,1,1,1,1,1,0,1,1,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,0,1,0,1,1,0,1,0,0,0,1,1,0,0,0,0,1,0,0,0,1,1,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,1,0,0,1,1,0,0,0,1,0,1,0,0,0,1,0,1,1,1,0,0,0] 
+    #binary_sequence: numpy.ndarray = numpy.array(test_array)
+    print(binary_sequence)
     #uint32 workaround
     #view = sequence.view(numpy.uint8)
     #if sequence.dtype.byteorder == '>' or (sequence.dtype.byteorder == '=' and sys.byteorder == 'big'):
     #    view = view[::-1]
 
     #binary_sequence: numpy.ndarray = numpy.unpackbits(view, axis=0, count=32, bitorder='little')[::-1]
-
-
 
     # Print sequence
     print("Random sequence from QRNG:")
