@@ -115,6 +115,7 @@ def run_by_name_battery(test_name: str,
         if not test.is_eligible(bits):
             return None
     # Return test result and elapsed time
+    print ("Running ", test_name)
     return test.run(bits)
 
 

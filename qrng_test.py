@@ -41,12 +41,16 @@ def data_collection(mock=False, data_path=""):
         """ This variable has to be set to 0. """
         devIndex = 0
 
-        # Get extracted random numbers in bytes
-        # 1024*3907 for 1M samples
+        """
+        Get extracted random numbers in bytes
+        1024*3907 for 1M samples (if using 8 bits encoding)
+        Use 1024*1024 for 1M in 32 bits encoding.
+        """
         array = lib.get_random(1024*3907,devIndex)
 
         """
-        This function disconnect the QRNG.
+        This function disconnect the QRNG just after
+        getting the numbers
         """
         lib.disconnect()
 
@@ -84,27 +88,57 @@ def encode_input(array, encode_method="encode_val"):
     if encode_method=="last_bits":
         new_array = [(num & 255) - 127 for num in array]
 
-    sequence: numpy.ndarray = numpy.array(array, dtype=int)
+    sequence: numpy.ndarray = numpy.array(new_array, dtype=int)
     binary_sequence: numpy.ndarray = pack_sequence(sequence)
 
     return binary_sequence
 
+"""sin
+Function to run the same tests using the
+built-in random library from python, just
+for comparison purposes.
+@param size of the dataset (DEFAULT 1M)
+"""
+def run_prng(size_test=1028016):
+    #sequence: numpy.ndarray = numpy.random.randint(-128, 128, size_test, dtype=int)
+    sequence: numpy.ndarray = numpy.random.randint(0, 4294967295, size_test, dtype=int)
+    binary_sequence: numpy.ndarray = pack_sequence(sequence)
+
+    return binary_sequence
+    
 
 if __name__ == "__main__":
 
     """
-    Leave arguments empty to use QRNG instrument.
-    Set "True" and type the path to use a dataset.
-    """    
-    array = data_collection(True, "/home/eortega/coding/cesga-qrng/small_output.txt")
+    Set this variable to True to run the same battery of tests
+    using pseudorandom numbers from random python built-in library 
+    """
+    run_classic = True
 
-    """
-    @args array  
-    @opts - empty: encode 32 bits),
-    use "map_val" for mapping or "last_bits" for using
-    only the last 8 bits of the string.
-    """
-    binary_sequence = encode_input(array)
+    if run_classic:
+        binary_sequence = run_prng()
+    else:
+        """
+        Leave arguments empty to use QRNG instrument.
+        Set "True" and type the path to use a dataset.
+        """    
+        array = data_collection(True, "/home/eortega/coding/cesga-qrng/random_data1.txt")
+
+        """
+        @args array  
+        @opts - empty: encode 32 bits),
+        use "map_val" for mapping or "last_bits" for using
+        only the last 8 bits of the string.
+        """
+        binary_sequence = encode_input(array)
+
+        """
+        Cutting the sequence to the desired number of bits.
+        1M in out case
+        """
+        expected_lenght = 1028016
+        if len(binary_sequence > expected_lenght):
+            binary_sequence = binary_sequence[0:expected_lenght]
 
     # Check the eligibility of the test and generate an eligible battery from the default NIST-sp800-22r1a battery
     eligible_battery: dict = check_eligibility_all_battery(binary_sequence, SP800_22R1A_BATTERY)

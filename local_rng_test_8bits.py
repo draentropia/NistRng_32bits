@@ -39,7 +39,7 @@ if __name__ == "__main__":
     #print("test ", int(1*factor-128))
     #print("test ", int((2** 32-1)/2*factor-128))
     #with open('cesga-qrng/output.txt', 'r') as file:
-    with open('/home/eortega/coding/cesga-qrng/random_data1.txt', 'r') as file:
+    with open('/home/eortega/coding/cesga-qrng/output.txt', 'r') as file:
       for line in file.readlines():
           #val = int(int(line.split("\n")[0]) * factor -127)
           val = int(line.split("\n")[0])
