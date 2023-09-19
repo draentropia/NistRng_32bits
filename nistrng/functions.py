@@ -22,21 +22,21 @@ from nistrng.sp800_22r1a import *
 # Define default NIST battery constant
 
 SP800_22R1A_BATTERY: dict = {
-                                "monobit": MonobitTest(),
-                                "frequency_within_block": FrequencyWithinBlockTest(),
-                                "runs": RunsTest(),
-                                "longest_run_ones_in_a_block": LongestRunOnesInABlockTest(),
-                                "binary_matrix_rank": BinaryMatrixRankTest(),
-                                "dft": DiscreteFourierTransformTest(),
-                                "non_overlapping_template_matching": NonOverlappingTemplateMatchingTest(),
-                                "overlapping_template_matching": OverlappingTemplateMatchingTest(),
-                                "maurers_universal": MaurersUniversalTest(),
-                                "linear_complexity": LinearComplexityTest(),
-                                "serial": SerialTest(),
-                                "approximate_entropy": ApproximateEntropyTest(),
-                                "cumulative sums": CumulativeSumsTest(),
-                                "random_excursion": RandomExcursionTest(),
-                                "random_excursion_variant": RandomExcursionVariantTest()
+                              "monobit": MonobitTest(),
+                              "frequency_within_block": FrequencyWithinBlockTest(),
+                              "runs": RunsTest(),
+                              "longest_run_ones_in_a_block": LongestRunOnesInABlockTest(),
+                              "binary_matrix_rank": BinaryMatrixRankTest(),
+                              "dft": DiscreteFourierTransformTest(),
+                              "non_overlapping_template_matching": NonOverlappingTemplateMatchingTest(),
+                              "overlapping_template_matching": OverlappingTemplateMatchingTest(),
+                              "maurers_universal": MaurersUniversalTest(),
+                              "linear_complexity": LinearComplexityTest(),
+                              "serial": SerialTest(),
+                              "approximate_entropy": ApproximateEntropyTest(),
+                              "cumulative sums": CumulativeSumsTest(),
+                              "random_excursion": RandomExcursionTest(),
+                              "random_excursion_variant": RandomExcursionVariantTest()
                             }
 
 # Define cache global variables
