@@ -113,7 +113,7 @@ if __name__ == "__main__":
     Set this variable to True to run the same battery of tests
     using pseudorandom numbers from random python built-in library 
     """
-    run_classic = True
+    run_classic = False
 
     if run_classic:
         binary_sequence = run_prng()
@@ -136,10 +136,11 @@ if __name__ == "__main__":
         Cutting the sequence to the desired number of bits.
         1M in out case
         """
-        expected_lenght = 1028016
-        if len(binary_sequence > expected_lenght):
+        expected_lenght = 1024
+        if len(binary_sequence) > expected_lenght:
             binary_sequence = binary_sequence[0:expected_lenght]
 
+        print(list(binary_sequence))
     # Check the eligibility of the test and generate an eligible battery from the default NIST-sp800-22r1a battery
     eligible_battery: dict = check_eligibility_all_battery(binary_sequence, SP800_22R1A_BATTERY)
     # Print the eligible tests
@@ -152,6 +153,6 @@ if __name__ == "__main__":
     print("Test results:")
     for result, elapsed_time in results:
         if result.passed:
-            print("- PASSED - score: " + str(numpy.round(result.score, 3)) + " - " + result.name + " - elapsed time: " + str(elapsed_time) + " ms")
+            print("- PASSED - score: " + str(numpy.round(result.score, 3)) + " - " + result.name + " - elapsed time: " + str(elapsed_time) + " ms. Details: " + str(result._score_list))
         else:
-            print("- FAILED - score: " + str(numpy.round(result.score, 3)) + " - " + result.name + " - elapsed time: " + str(elapsed_time) + " ms")
+            print("- FAILED - score: " + str(numpy.round(result.score, 3)) + " - " + result.name + " - elapsed time: " + str(elapsed_time) + " ms. Details: " + str(result._score_list))
